@@ -12,6 +12,7 @@ import {
 import { useTodo } from '../context/TodoContext';
 import { useTheme } from '../context/ThemeContext';
 import { themes, ThemeName } from '../lib/theme';
+import { generateSyncLink } from '../lib/sync';
 import { Card } from '../components/ui/card';
 import { Todo, SubTask } from '../types/todo';
 
@@ -141,6 +142,19 @@ export function Settings() {
     ];
   };
 
+
+  // 复制同步链接
+  const handleCopySyncLink = async () => {
+    const link = generateSyncLink(state.todos);
+    try {
+      await navigator.clipboard.writeText(link);
+      setImportStatus('同步链接已复制到剪贴板');
+      setTimeout(() => setImportStatus(''), 3000);
+    } catch {
+      setImportStatus('同步失败，请重试');
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <main className="max-w-md mx-auto px-4 py-4 space-y-6">
@@ -162,7 +176,20 @@ export function Settings() {
               const colors = getThemePreviewColors(key);
               const isSelected = theme === key;
 
-              return (
+            
+  // 复制同步链接
+  const handleCopySyncLink = async () => {
+    const link = generateSyncLink(state.todos);
+    try {
+      await navigator.clipboard.writeText(link);
+      setImportStatus('同步链接已复制到剪贴板');
+      setTimeout(() => setImportStatus(''), 3000);
+    } catch {
+      setImportStatus('同步失败，请重试');
+    }
+  };
+
+  return (
                 <button
                   key={key}
                   onClick={() => setTheme(key)}

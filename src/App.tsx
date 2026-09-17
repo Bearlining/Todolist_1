@@ -10,6 +10,7 @@ import { Statistics } from './pages/Statistics';
 import { Settings } from './pages/Settings';
 import { Home, List, TrendingUp, Settings as SettingsIcon, Plus } from 'lucide-react';
 import { initTheme } from './lib/theme';
+import { SyncDialog } from './components/sync/SyncDialog';
 
 type TabType = 'dashboard' | 'todos' | 'statistics' | 'settings';
 
@@ -150,6 +151,7 @@ function App() {
         <FallingItemsLayer />
         </FallingItemsProvider>
       </TodoProvider>
+        <SyncDialog />
     </ThemeProvider>
   );
 }
